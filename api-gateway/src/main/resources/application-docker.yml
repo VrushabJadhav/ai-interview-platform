@@ -1,0 +1,50 @@
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: auth-service
+          uri: http://auth-service:8081
+          predicates:
+            - Path=/api/auth/**
+        - id: interview-service
+          uri: http://interview-service:8082
+          predicates:
+            - Path=/api/interviews/**
+        - id: ai-evaluation-service
+          uri: http://ai-evaluation-service:8083
+          predicates:
+            - Path=/api/evaluations/**
+        - id: payment-service
+          uri: http://payment-service:8084
+          predicates:
+            - Path=/api/payments/**
+        - id: auth-health
+          uri: http://auth-service:8081
+          predicates:
+            - Path=/health/auth
+          filters:
+            - SetPath=/actuator/health
+        - id: interview-health
+          uri: http://interview-service:8082
+          predicates:
+            - Path=/health/interview
+          filters:
+            - SetPath=/actuator/health
+        - id: ai-evaluation-health
+          uri: http://ai-evaluation-service:8083
+          predicates:
+            - Path=/health/ai-evaluation
+          filters:
+            - SetPath=/actuator/health
+        - id: payment-health
+          uri: http://payment-service:8084
+          predicates:
+            - Path=/health/payment
+          filters:
+            - SetPath=/actuator/health
+        - id: notification-health
+          uri: http://notification-service:8085
+          predicates:
+            - Path=/health/notification
+          filters:
+            - SetPath=/actuator/health

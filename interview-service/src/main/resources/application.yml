@@ -1,0 +1,25 @@
+server:
+  port: 8082
+spring:
+  application:
+    name: interview-service
+  datasource:
+    url: jdbc:postgresql://localhost:5432/interview_db
+    username: ai_interview
+    password: ai_interview
+  jpa:
+    hibernate:
+      ddl-auto: validate
+  kafka:
+    bootstrap-servers: localhost:9092
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  cache:
+    type: redis
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info

@@ -1,0 +1,11 @@
+package com.aiinterview.notification.email;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Component;
+
+@Component
+public class MockEmailSender implements EmailSender {
+    private static final Logger log = LoggerFactory.getLogger(MockEmailSender.class);
+    @Override public void send(String recipient, String subject, String body) { log.info("Mock email to={} subject={} body={}", recipient, subject, body); }
+}

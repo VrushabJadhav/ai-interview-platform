@@ -1,0 +1,59 @@
+### Register candidate
+POST http://localhost:8080/api/auth/register
+Content-Type: application/json
+
+{
+  "email": "candidate@example.com",
+  "password": "Password123!",
+  "role": "CANDIDATE"
+}
+
+### Login
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "candidate@example.com",
+  "password": "Password123!"
+}
+
+### Create interview
+POST http://localhost:8080/api/interviews
+Content-Type: application/json
+
+{
+  "candidateId": "00000000-0000-0000-0000-000000000001",
+  "role": "Java Backend Engineer"
+}
+
+### Submit interview
+POST http://localhost:8080/api/interviews/{{interviewId}}/submit
+Content-Type: application/json
+
+{
+  "answers": [
+    { "question": "Explain Kafka consumer groups.", "answer": "Consumer groups allow horizontal scaling where each partition is consumed by one member in the group." },
+    { "question": "How do you handle idempotency?", "answer": "Persist an idempotency key and make retries return the same logical outcome." }
+  ]
+}
+
+### Fetch evaluation
+GET http://localhost:8080/api/evaluations/interviews/{{interviewId}}
+
+### Create checkout session
+POST http://localhost:8080/api/payments/checkout
+Content-Type: application/json
+
+{
+  "customerId": "00000000-0000-0000-0000-000000000001",
+  "planCode": "PRO"
+}
+
+### Complete mock payment callback
+POST http://localhost:8080/api/payments/callbacks/mock
+Content-Type: application/json
+Idempotency-Key: demo-callback-001
+
+{
+  "checkoutSessionId": "{{checkoutSessionId}}"
+}

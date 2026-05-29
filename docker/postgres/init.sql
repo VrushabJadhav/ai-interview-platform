@@ -1,0 +1,4 @@
+CREATE DATABASE auth_db;
+CREATE DATABASE interview_db;
+CREATE DATABASE ai_eval_db;
+CREATE DATABASE payment_db;
